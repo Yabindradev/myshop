@@ -1,0 +1,64 @@
+.lcont {
+    width: 97%;
+    height: 800px;
+    background-color: #fff;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+
+.login {
+    margin-top: 50px;
+    margin-left: 100px;
+    width: 400px;
+    float: left;
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=submit] {
+    border: none;
+    border-radius: 10px;
+    width: 70%;
+    height: 40px;
+    background-color: rgb(101, 20, 178);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    width: 70%;
+    height: 40px;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+input[type=checkbox] {
+    float: left;
+}
+
+.img img {
+    margin-top: 100px;
+    margin-right: 100px;
+    width: 55%;
+    border-radius: 10px;
+}
+
+input[type=text] {
+    float: left;
+}

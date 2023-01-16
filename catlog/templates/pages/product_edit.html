@@ -1,0 +1,29 @@
+{% extends 'pages/dmain.html'%}
+{% block title%}
+admin edit Products pages
+{% endblock %}
+{% block body %}
+<style>
+      main{
+    margin-left: 17%;
+    padding: 16px;
+    background-color: rgb(205, 211, 211);
+    height: auto;
+}
+.contant{
+    margin-top: 50px;
+}
+</style>
+    <main>
+
+        <div class="contant">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Update">
+            </form>
+        </div>
+
+    </main>
+    {% endblock %}
+    

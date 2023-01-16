@@ -1,0 +1,146 @@
+{% extends 'pages/dmain.html'%}
+{% block title%}
+admin Products pages
+{% endblock %}
+{% block body %}
+<style>
+       main{
+    margin-left: 17%;
+    padding: 16px;
+    background-color:var(--background);
+    height: auto;
+    color: var(--text);
+}
+  .contant{
+    margin-top: 50px;
+}
+*{
+    font-family: Mono Font;
+}
+.products{
+    flex-wrap: wrap;
+    display: flex;
+    direction: row;
+   
+}
+.items{
+    margin-left: 10px;
+   width: 200px;
+    height: 300px;
+    background-color: var(--background);
+    margin-bottom: 20px;
+    border-radius: 5px;
+
+}
+.items img{
+    width: 200px;
+    height: 180px;
+    border-radius: 5px;
+
+}
+.items p, strong{
+    margin-left: 6px;
+}
+.items a{
+    text-decoration: none;
+    border-radius: 5px;
+    
+    margin-right: 10px;
+    height: 30px;
+    text-align: center;
+    color: var(--text);
+    margin-left: 5px;
+    font-weight: bold;
+}
+.bottom-button{
+    float: right;
+    background-image: linear-gradient(0deg, rgb(81, 97, 243), rgb(48, 197, 63));
+    height: 50px;
+    width: 250px;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+}
+.bottom-button a {
+   margin-top: 5px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+}
+.bottom-button a:hover{
+    color: red;
+}
+.previous{
+    background-color: rgb(0, 251, 255);
+    color: black;
+    border-radius: 5px;
+}
+.next{
+     background-color: rgb(107, 227, 71);
+    color: rgb(8, 8, 8);
+    border-radius: 5px;
+}
+</style>
+<main>
+    <div class="contant">
+        {% if products %}
+        <h2>All Products </h2>
+        {% if messages %}
+        {% for messages in messages %}
+        
+        <div class="alert alert-primary" role="alert">
+            {{messages}}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+        <div class="products">
+            {% for products in products %}
+            <div class="items">
+                
+            <img src="{{ products.first_images.url }}">
+            <hr>
+            <p>{{products.title|truncatechars:20}} <br>
+            <!-- <p>{{object_list.description|truncatechars:50}}</p> -->
+            ¥ {{products.price}}</p>
+        
+            <a href="{% url 'product_edit' products.id %}">Edit</a> 
+            <a style="float: right;" href="{% url 'product_delete' products.id %}">Delete</a>
+            </div>
+            {% endfor %}
+        
+             </div>
+
+            <div class="bottom-button">
+                {% if products.has_previous %}
+                <a class="previous" href="?page={{ products.previous_page_number }}">Previous</a>
+                {% endif %}
+            
+            
+            
+            
+                <span class="current">
+                    Page {{ products.number }} of {{ products.paginator.num_pages }}
+                </span>
+            
+            
+            
+            
+            
+                {% if products.has_next %}
+                <a class="next" href="?page={{ products.next_page_number }}">Next</a>
+                {% endif %}
+            
+            
+            </div>
+       
+        {% else %}
+        <p>You dont have any products now .</p>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

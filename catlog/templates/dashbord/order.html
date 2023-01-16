@@ -1,0 +1,311 @@
+{% extends 'pages/dmain.html'%}
+{% block title%}
+admin order pages
+{% endblock %}
+{% block body %}
+<style>
+
+    main{
+    padding: 16px;
+    margin-left: 14%;
+    background-color: var(--background);
+    color: var(--text);
+    height: 800px;
+}
+*{
+    font-family: Mono Font;
+}
+h3{
+    margin-left: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+  .contant{
+    margin-top: 50px;
+}
+h2{
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+table {
+    background-color: var(--background);
+    color: var(--text);
+  border-collapse: collapse;
+  width: 100%;
+}
+.table{
+    background-color: var(--background);
+    color: var(--text);
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  color: var(--text);
+}
+tbody{
+    color: var(--text);
+}
+ 
+ .a a {
+     color: rgb(236, 9, 9);
+    border-radius: 5px;
+    width: 100px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+}
+ .b a {
+   
+     color: rgb(23, 8, 158);
+    border-radius: 5px;
+    width: 100px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+
+
+
+    
+}
+a{
+    text-decoration: none;
+    color: black;
+    border: none;
+
+}
+ .c a {
+   
+    color: rgb(27, 174, 32);
+    border-radius: 5px;
+    width: 100px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+
+
+    
+}
+.bottom-button{
+    float: right;
+    background-image: linear-gradient(0deg, rgb(81, 97, 243), rgb(48, 197, 63));
+    height: 50px;
+    width: 250px;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+}
+.bottom-button a {
+   margin-top: 5px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+}
+.bottom-button a:hover{
+    color: red;
+}
+.previous{
+    background-color: rgb(0, 251, 255);
+    color: black;
+    border-radius: 5px;
+}
+.next{
+     background-color: rgb(107, 227, 71);
+    color: rgb(8, 8, 8);
+    border-radius: 5px;
+}
+.topa{
+    margin-bottom: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    color: white;
+
+}
+.left{
+    background-color: blueviolet;
+    margin-left: 20px;
+    width: 260px;
+    height: 110px;
+     margin: 40px;
+     text-align: center;
+     border-radius: 10px;
+
+}
+
+
+.center{
+    background-color: rgb(152, 67, 129);
+    width: 260px;
+    height: 110px;
+     margin: 40px;
+     text-align: center;
+     border-radius: 10px;
+
+}
+
+.right{
+    background-color: rgb(181, 73, 34);
+    width: 260px;
+    height: 110px;
+     margin: 40px;
+     text-align: center;
+     border-radius: 10px;
+
+     
+}
+.topa a{
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+
+</style>
+<main>
+    <div class="contant">
+        <div class="topa">
+        
+        
+            <div class="left">
+                <a href="{% url 'new_order' %}">New Order</a>
+                <h1>{{new}}</h1>
+            </div>
+        
+        
+            <div class="center">
+        
+                <a href="{% url 'shipped_order' %}">Shipped Order</a>
+                <h1>{{shiped}}</h1>
+            </div>
+        
+        
+           
+        
+        
+            <div class="right">
+                <a href="{% url 'delivered_order' %}">Deleverd Order</a>
+                <h1>{{deleverd}}</h1>
+            </div>
+        
+        
+        </div>
+
+        {% if  order %}
+   
+
+    {% if messages %}
+    {% for messages in messages %}
+    
+    <div class="alert alert-primary" role="alert">
+        {{messages}}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    
+
+   <div class="order">
+    <div class="table">
+    <table>
+        <thead>
+            <tr>
+                <th scope="">Order ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Location</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status Order</th>
+
+
+            </tr>
+        </thead>
+            
+        <tbody>
+            
+            
+            {% for order in order %}
+            <tr>
+                <td class=""><a href="{% url 'order_details_admin' order.id %}">{{order.order_no}}</a></td>
+                <td class="fw-bold"><a href="{% url 'order_details_admin' order.id %}">{{order.created_at}}</a></td>
+                <td class="fw-bold"><a href="{% url 'order_details_admin' order.id %}">{{order.email}}</a></td>
+                <!-- <td class="fw-bold">{{order.product.first_images}}{{orderitem.product}}</td> -->
+                <td class="fw-bold"><a href="{% url 'order_details_admin' order.id %}">{{order.address}}</a></td>
+                <!-- <td class="fw-bold">{{order.zipcode}}</td> -->
+                <!-- <td class="fw-bold">{{orderitem.quantity}}</td> -->
+                <td class="fw-bold"> <a href="{% url 'order_details_admin' order.id %}">{{order.price}}</a></td>
+                {% if order.staus == "Ordered" %}
+                <td class="a"><a href="{% url 'order_details_admin' order.id %}">Ordered</a></td>
+                {% elif order.staus == "Shipped" %}
+                <td class="b"><a href="{% url 'order_details_admin' order.id %}">Shipped</a></td>
+                {% else %}
+                <td class="c"><a href="{% url 'order_details_admin' order.id %}">{{order.staus}}</a></td>
+                
+                
+                {% endif %}
+                
+
+
+            
+        </tr>
+        {% endfor %}
+       
+            </tbody>
+    </table>
+    </div>
+    </div>
+    <div class="bottom-button">
+    {% if order.has_previous %}
+    <a class="previous" href="?page={{ order.previous_page_number }}">Previous</a>
+    {% endif %}
+
+
+    
+
+    <span class="current">
+        Page {{ order.number }} of {{ order.paginator.num_pages }}
+    </span>
+
+    
+
+    
+
+    {% if order.has_next %}
+    <a class="next" href="?page={{ order.next_page_number }}">Next</a>
+    {% endif %}
+
+   
+   </div>
+   {% else %}
+   <p>Don't find any order in this time</p>
+
+   {% endif %}
+</div>
+<script>
+    var today = new Date();
+        var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+        var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+
+
+        document.getElementById("datetime").innerHTML = date + '   ' + time
+
+</script>
+
+</main>
+{% endblock %}

@@ -1,0 +1,348 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <meta charset="UTF-8">
+    <meta name="my-app" content="light dark">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/default.css' %}" rel = "stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet"  type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet"  type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet"  type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+         
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <title>{% block title%} 
+        {% endblock %}
+    </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+        * {
+            list-style: none;
+            text-decoration: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+      
+
+        .wrapper .sidebar {
+            background: var(--background);
+            color: var(--text);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 15%;
+            height: 100%;
+            padding: 20px 0;
+            transition: all 0.5s ease;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .wrapper .sidebar .profile {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .wrapper .sidebar .profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+           
+        }
+
+        .wrapper .sidebar .profile h3 {
+            color: var(--text);
+            margin: 10px 0 5px;
+        }
+
+        .wrapper .sidebar .profile p {
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .wrapper .sidebar ul li a {
+            display: block;
+            padding: 13px 30px;
+            color: var(--text);
+            font-size: 16px;
+            position: relative;
+        }
+
+        .wrapper .sidebar ul li a .icon {
+            color: var(--text);
+            width: 30px;
+            display: inline-block;
+        }
+
+        .wrapper .sidebar ul li a:hover,
+        .wrapper .sidebar ul li a.active {
+            color: #0c7db1;
+
+            background: white;
+            border-right: 2px solid rgb(5, 68, 104);
+        }
+
+        .wrapper .sidebar ul li a:hover .icon,
+        .wrapper .sidebar ul li a.active .icon {
+            color: #0c7db1;
+        }
+
+        .wrapper .sidebar ul li a:hover:before,
+        .wrapper .sidebar ul li a.active:before {
+            display: block;
+        }
+
+    
+
+        .wrapper .section .top_navbar {
+            background:var(--background);
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position:fixed;
+            overflow: hidden;
+            width: 100%;
+            box-shadow: var(--top-bar);
+
+        }
+        .top_navbar ul {
+            float: right;
+        }
+       
+    
+        .info i{
+            color: red;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+             .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  
+}
+.switch span{
+    font-size: 0px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(223, 102, 191);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--background);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+     
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!--Top menu -->
+        <div class="sidebar">
+            <!--profile image & text-->
+            <!--menu item-->
+
+            <div class="profile">
+                
+                <img src="{{user_profile.userprofile.url}}">
+             
+                <h3>{{user.username}}</h3>
+                <p>Admin</p>
+            </div>
+
+            <ul>
+                <li>
+                    <a href="{% url 'dashbord_landing' %}" >
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="item">Dashbord</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'dashbord_order' %}" class="">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="item">Order</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'products'%}">
+                        <span class="icon"><i class="fas fa-desktop"></i></span>
+                        <span class="item">Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'category' %}">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="item">Category</span>
+                    </a>
+                </li>
+                <li>
+                   
+                    
+                <li>
+                    <a href="">
+                        <span class="icon"><i class="fas fa-chart-line"></i></span>
+                        <span class="item">Tools</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fas fa-user-shield"></i></span>
+                        <span class="item">Admin</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'admin_setting' %}">
+                        <span class=""><i class="fas fa-cog"></i></span>
+                        <span class="item">Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/">
+                        <span class="icon"><i class="fa-solid fa-browser"></i></span>
+                        <span class="item">Return TO site</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'logout'%}">
+                        <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+                        <span class="item">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="section">
+            <div class="top_navbar">
+                <ul>
+                  
+
+                        <li style="float: right;">
+                            <label class="switch">
+                                                    <input id="theme-toggle"  type="checkbox">
+                                                    <span  id="theme" class="slider round"></span>
+                                                </label>
+<!-- <span id="theme"></span> <button id="theme-toggle">Change mode</button> -->
+                        </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    {% block body %}
+    {% endblock %}
+</body>
+<script>
+    const dark = 'dark'
+    const light = 'light'
+
+                function getTheme() {
+            return localStorage.getItem('theme') || 'light';
+        }
+                function saveTheme(theme) {
+                    localStorage.setItem('theme', theme);
+        }
+
+                const colorScheme = document.querySelector('meta[name="my-app"]');
+                function applyTheme(theme) {
+                    document.body.className = theme;
+                colorScheme.content = theme;
+        }
+
+                function rotateTheme(theme) {
+            if (theme === 'light') {
+                return dark
+            }
+                return light;
+        }
+
+                const themeDisplay = document.getElementById('theme');
+                const themeToggler = document.getElementById('theme-toggle');
+
+        // Mimic heavy load done by other JS scripts
+        setTimeout(() => {
+                    let theme = getTheme();
+                applyTheme(theme);
+                themeDisplay.innerText = theme;
+
+            themeToggler.onclick = () => {
+                const newTheme = rotateTheme(theme);
+                applyTheme(newTheme);
+                themeDisplay.innerText = newTheme;
+                saveTheme(newTheme);
+
+                theme = newTheme;
+            }
+        }, 100);
+
+        </script>
+
+
+</html>
+
