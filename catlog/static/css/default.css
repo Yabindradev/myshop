@@ -1,0 +1,13 @@
+            body.light {
+                --text: dark;
+                --background: white;
+                --box-shadow: 3px 0px 0px -1px rgba(0, 0, 0, 1);
+                /* --top-bar: 1px 2px 0px -1px rgba(44, 24, 222, 1); */
+                --top-bar: 210px 2px 0px -1px rgba(44, 24, 222, 1);
+            }
+
+            body.dark {
+                --text: white;
+                --background: #10132b;
+
+            }

@@ -1,0 +1,332 @@
+{% extends 'pages/home.html'%}
+{% load static %}
+
+
+{% block body %}
+<style>
+    main{
+        margin-top:110px;
+        margin-bottom: 50px;
+        background-color: white;
+    }
+    .proucts{
+        display: flex;
+        margin-left: 17%;
+    }
+    .img img{
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+        margin-top: 30px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        width: 450px;
+        height: 500px;
+        margin-right: 100px;
+        border-radius: 10px;
+    }
+    .small-img{
+        display: flex;
+        margin-left: 17%;
+
+    }
+    .simg img{
+
+        margin-right: 20px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+          width: 140px;
+        height: 140px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+
+    }
+    .text{
+        margin-top: 30px;
+    }
+    .text small{
+        font-weight: bold;
+        font-size: 15px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+    .text h4{
+        color: rgb(14, 149, 149);
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+    .text strong{
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .text h5{
+        margin-top: 20px;
+        font-size: 10px;
+    }
+      .text h3{
+        margin-top: 20px;
+        font-size: 12px;
+    }
+    .text h6{
+        font-size: 10px;
+    }
+    li{
+        margin-left: 20px;
+        font-size: 12px;
+    }
+    .size{
+        display: flex;
+    }
+    .s h5{
+        height: 35px;
+        background-color:  rgb(14, 149, 149);
+        margin-right: 10px;
+        width: 35px;
+        text-align: center;
+        border-radius: 50%;
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        align-items: center;
+
+    }
+    .del{
+        font-weight: bold;
+        color: red;
+        margin-top: 30px;
+    }
+    button{
+        border: none;
+        border-radius: 5px;
+        color: white;
+        width: 170px;
+        height: 40px;
+        background-color: rgb(244, 7, 208);
+
+    }
+    /*--------------similar products--------------*/
+    .similar h3{
+        margin-left: 7%;
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 40px;
+        margin-top: 20px;
+    }
+    .sproducts{
+        flex-wrap: wrap;
+        display: flex;
+        margin-left: 10%;
+    }
+    .one{
+        margin-left: 10px;
+        width: 260px;
+        height: 300px;
+        margin-right: 20px;
+        margin-bottom: 40px;
+        box-shadow: 0 2px 2px 0 rgba(248, 239, 242, 0.931), 0 2px 2px 0 rgba(0, 2, 2);
+    }
+    .one img{
+        border-radius: 5px;
+        width: 260px;
+        height: 230px;
+
+        
+    }
+    .st h4{
+        float: right;
+        font-weight: bold;
+        margin-right: 10px;
+        font-size: 17px;
+       color: rgb(14, 149, 149);
+    }
+    .st p{
+        text-transform: capitalize;
+        font-size: 13px;
+        font-weight: bold;
+    }
+    footer{
+    width: 97%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+footer p, span, h6, a{
+    color: black;
+    font-weight: bold;
+}
+    /*---------------------*/
+
+</style>
+<main>
+    <div class="proucts">
+        <div class="img">
+            {% if object %}
+            <img id="myImg" src="{{object.first_images.url}}">
+            {% endif %}
+        </div>
+        <div class="text">
+            <h4>{{object.title}}</h4>
+            <small>{{object.discount}}</small>
+            <strong>¥ {{object.price}}</strong>
+            <h6>(tax include)</h6>
+          
+                {% if messages %}
+                {% for messages in messages %}
+
+                <div class="alert alert-primary" role="alert">
+                    {{messages}}
+                </div>
+                {% endfor %}
+                {% endif %}
+                <form method="post" action=".">
+                    {% csrf_token %}
+                
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input type="hidden" name="quantity" value="1" class="input" min="1">
+                        </div>
+                
+                        <div class="control">
+                            <button class="button is-dark is-uppercase">Add to cart</button>
+                        </div>
+                    </div>
+                </form>
+                  
+        <br>
+        <br>
+
+        <h6>PRODUCTS DETAILS</h6>
+        <p>{{object.description}}</p>
+     
+        <h2 class="del"><i class="fa-solid fa-truck"> </i> Free Delivery</h2>
+    </div>
+    </div>
+    <div class="small-img">
+        <div class="simg">
+            {% if object.second_images %}
+            <img src="{{object.second_images.url}}">
+            {% endif %}
+        </div>
+        <div class="simg">
+            {% if object.third_images %}
+            <img src="{{object.third_images.url}}">
+            {% endif %}
+        </div>
+
+        <div class="simg">
+            {% if object.forth_images %}
+            <img src="{{object.forth_images.url}}">
+            {% endif %}
+        </div>
+    
+        
+
+    </div>
+
+
+    <br>
+    <hr>
+
+    <div class="similar">
+    <h3>Similar Products</h3>
+    <div class="sproducts">
+        {% for related_products in related_products %}
+        <div class="one">
+            <a href='{{ related_products.get_absolute_url}}'>
+            <img src="{{related_products.first_images.url}}">
+            </a>
+            <div class="st">
+                <p>{{related_products.title|truncatechars:28}}</p>
+                <h4>¥ {{related_products.price}}</h4>
+            </div>
+           
+    </div>
+    {% endfor %}
+    </div>
+  
+    </div>
+
+    </main>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-white text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <div class="social">
+                <a href="" class="me-4 link-secondary">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 link-secondary">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </section>
+    
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+    
+                <div class="row mt-3">
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Company name
+                        </h6>
+                        <p>
+                            Short informaction
+                        </p>
+                    </div>
+    
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Products
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Shoes</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">T-short</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset"></a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset"></a>
+                        </p>
+                    </div>
+    
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Useful links
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Pricing</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Settings</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Orders</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Help</a>
+                        </p>
+                    </div>
+    
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p><i class="fas fa-home me-3 text-secondary"></i> Koteshow Ktm Nepal.</p>
+                        <p>
+                            <i class="fas fa-envelope me-3 text-secondary"></i>myapplication@gmail.com
+                        </p>
+                        <p><i class="fas fa-phone me-3 text-secondary"></i> + 977 9835985677</p>
+                        <p><i class="fas fa-print me-3 text-secondary"></i> + 977 9835985677</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+            <p>© 2022 Copyright:myapplication.com</p>
+    
+        </div>
+    </footer>
+
+{% endblock %}

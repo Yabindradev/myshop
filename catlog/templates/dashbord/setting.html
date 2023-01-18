@@ -1,0 +1,85 @@
+{% extends 'pages/dmain.html'%}
+{% block title%}
+admin Products pages
+{% endblock %}
+{% block body %}
+<style>
+    body.light {
+  --text: dark;
+  --background: white;
+}
+body.dark {
+  --text: white;
+  --background: black;
+}
+    *{
+    font-family: Mono Font;
+}
+
+    main {
+        margin-left: 17%;
+        padding: 16px;
+        background-color: var(--background);
+        height: 1000px;
+    }
+
+    .contant {
+        margin-top: 50px;
+    }
+    .items{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 17px;
+    }
+    .box{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        color: var(--text);
+        width: 363px;
+        height: 150px;
+        background-color: var(--background);
+        border-radius: 10px;
+        }
+.text{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+   
+</style>
+    <main>
+        <div class="contant">
+
+            <div class="items">
+                <div class="box">
+
+                    <div class="text">
+                        <div class="hhh">
+                            <h1>Dark Mode</h1>
+                        </div>
+                   
+                    <div class="hhh">
+                    
+                   
+                    </div>
+                    </div>
+                    <p>Turn off the lights. Dark background with darker colors.</p>
+                </div>
+
+                <div class="box">
+                
+                </div>
+
+                <div class="box">
+                
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+
+{% endblock %}

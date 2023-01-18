@@ -1,0 +1,48 @@
+
+
+     .contat {
+         margin-left: 15%;
+         padding: 1px 16px;
+     }
+
+     .main {
+         margin-top: 80px;
+         width: 20%;
+         align-items: center;
+         text-align: center;
+         margin-bottom: 10px;
+     }
+
+     .order {
+         margin-left: 20px;
+         width: 70%;
+         height: 40px;
+         border: 1px solid black;
+         text-align: center;
+         align-items: center;
+         margin-top: 10px;
+     }
+
+     small {
+         margin-top: 5px;
+     }
+
+     .chart {
+         margin-left: 20px;
+         margin-top: 20px;
+         width: 90%;
+     }
+
+     .sell-chart {
+         border: 1px solid black;
+         display: flex;
+     }
+
+     .top-header {
+         background-color: rgb(57, 39, 39);
+         color: white;
+         padding: 2px;
+         text-align: center;
+         align-items: center;
+     }
+

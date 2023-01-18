@@ -1,0 +1,304 @@
+{% extends 'pages/home.html' %}
+
+{% block title %}Cart | {% endblock %}
+
+{% block body %}
+<main>
+    <style>
+        main{
+            margin-top: 100px;
+        }
+            
+    
+        .checkout{
+            margin-left: 3%;
+            margin-top: 20px;
+        }
+        .cart{
+            width: 90%;
+            margin-left: 7%;
+            margin-bottom: 100px;
+        }
+    
+        .cart h1{
+            font-family: Arial;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: cadetblue;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+                }
+        .text {
+            font-family: Arial;
+            color: rgb(31, 234, 146);
+            font-size: 20px;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+        }
+        strong{
+            font-family: Arial;
+            font-family: Georgia;
+            font-weight: bold;
+            font-size: 25px;
+            color: rgb(19, 200, 128);
+        }
+        
+         input[type=text]{
+            font-family: Arial;
+            width: 35%;
+            height: 40px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        } 
+        
+         input[type=submit]{
+            width: 17%;
+            height: 40px;
+            border: none;
+            margin-left: 10px;
+            margin-right: 20px;
+            border-radius: 5px;
+            background-color: rgb(35, 29, 211);
+            color: white;
+         }
+       button{
+             width: 20%;
+            height: 40px;
+            border: none;
+            margin-left: 10px;
+            border-radius: 5px;
+            background-color: rgb(35, 29, 211);
+            color: white;
+         }
+         
+         form a{
+            background-color: rgb(35, 29, 211);
+            color: white;
+            text-decoration: none;
+         }
+         i{
+            color: red;
+         }
+    </style>
+    <div class="pages">
+    <div class="cart">
+<h1 class="title"> My Cart</h1>
+{% if cart_item %}
+<div class="box mb-6">
+    <div class="table">
+        <table class="table is-fullwidth is-striped">
+            <thead>
+                <th></th>
+                <th>Discprition</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+                <th>Action</th>
+            </thead>
+
+            <tbody>
+                {% for cart_item in cart_item %}
+                <tr>
+                    <td></td>
+
+                    <td> <a href="{{ cart_item.get_absolute_url}}"><img src="{{cart_item.product.first_images.url}}"></a>
+                       {{cart_item.product.title}}</td>
+                       <td>{{cart_item.product.price}}</td>
+                    <td class="text">
+                       
+
+                        <a href="?change_quantity={{ cart_item.id }}&quantity=-1"> - </a>
+                        {{ cart_item.quantity }}
+                        <a   href="?change_quantity={{ cart_item.id }}&quantity=1"> +</a>
+                    </td>
+                
+                    <td class="text"><a href="?remove_from_cart={{ cart_item.id }}" class="delete"><i class="fa-solid fa-trash"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><strong>Total </strong></td>
+                    <td><strong >{{ cart|length}}</strong></td>
+                    <td colspan="2"><strong>${{ cart_item.get_total_cost }}</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<form>
+    <small> If you have a promotion code please enter here.</small><br>
+    <input type="text" placeholder="   Please enter promotion code">
+    <input type="submit" value="Apply Code"> <button><a  href="/">Shopping</a></button> 
+<button><a href="user_order">Checkout</a></button>
+
+</form>
+</div>
+
+{% else %}
+<h3>Your cart is empty...</h3>
+<button><a href="/">Shopping</a></button>
+</div>
+
+
+
+
+
+
+    <script>
+
+
+                function verifyPayment(payload) {
+                    $.ajax({
+            
+                        type: "POST",
+                        data: payload,
+                        dataType: 'json',
+                        success: function (response) { alert(response) },
+                        error: function (error) { alert(error.responseJSON['message']) }
+                    });
+    }
+
+                var config = {
+                    // replace the publicKey with yours
+                    "publicKey": "test_public_key_3e980bcab8034736bd150f18f7789a87",
+                "productIdentity": "1234567890",
+                "productName": "Dragon",
+                "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+                "eventHandler": {
+                    onSuccess(payload) {
+                    // hit merchant api for initiating verfication
+                    console.log(payload);
+                verifyPayment(payload)
+            },
+                onError(error) {
+                    console.log(error);
+            },
+                onClose() {
+                    console.log('widget is closing');
+            }
+        }
+    };
+
+                var checkout = new KhaltiCheckout(config);
+                var btn = document.getElementById("payment-button");
+                btn.onclick = function () {
+                    checkout.show({ amount: 1000 });
+    }
+        </script>
+
+
+
+</main>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="text-center text-lg-start bg-white text-muted">
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+        </div>
+        <div class="social">
+            <a href="" class="me-4 link-secondary">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="me-4 link-secondary">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="">
+        <div class="container text-center text-md-start mt-5">
+
+            <div class="row mt-3">
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Company name
+                    </h6>
+                    <p>
+                        Short informaction
+                    </p>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Products
+                    </h6>
+                    <p>
+                        <a href="#!" class="text-reset">Shoes</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">T-short</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset"></a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset"></a>
+                    </p>
+                </div>
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Useful links
+                    </h6>
+                    <p>
+                        <a href="#!" class="text-reset">Pricing</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Settings</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Orders</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Help</a>
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                    <p><i class="fas fa-home me-3 text-secondary"></i> Koteshow Ktm Nepal.</p>
+                    <p>
+                        <i class="fas fa-envelope me-3 text-secondary"></i>myapplication@gmail.com
+                    </p>
+                    <p><i class="fas fa-phone me-3 text-secondary"></i> + 977 9835985677</p>
+                    <p><i class="fas fa-print me-3 text-secondary"></i> + 977 9835985677</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+        <p>© 2022 Copyright:myapplication.com</p>
+
+    </div>
+</footer> 
+    {% endblock %}

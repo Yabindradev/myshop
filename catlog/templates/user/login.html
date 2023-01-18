@@ -1,0 +1,108 @@
+{% extends 'pages/home.html'%}
+{% load static %}
+{% block title %} login {% endblock %}
+
+{% block body %}
+<style>
+      .lcont {
+        background-color: white;
+        width: 90%;
+        margin-left: 60px;
+        height: 600px;
+        margin-top: 80px;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    h2{
+        margin-top: 50px;
+    }
+
+
+
+    input[type=text],
+    input[type=password] {
+        width: 30%;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 5px;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    input[type=submit] {
+        border: none;
+        border-radius: 10px;
+        width: 30%;
+        height: 40px;
+        background-color: rgb(101, 20, 178);
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    @media (max-width: 920px){
+          input[type=text],
+          input[type=password],
+           input[type=submit]  {
+          width: 80%;
+         margin: 10px;
+         margin-top: 20px;
+
+
+    }
+    .lcont{
+        margin-top: 15px;
+        height: 600px;
+       margin-left: 20px;
+
+    }
+    .lcont h2{
+        margin-top: 20px;
+    }
+
+    }
+    small{
+        font-size: 19px;
+        font-weight: bold;
+        color: red;
+    }
+    .social a{
+        margin-left: 20px;
+
+    }
+
+</style>
+    <div class="lcont">
+
+<h2>Log in</h2>
+<p>Please fill in the details for  log in your account</p>
+<br>
+<form method="Post">
+{% csrf_token %}
+
+    <input type="text" placeholder="username" id="username" name ="username"><br>
+    <input type="password" placeholder="**********" id="password" name ="password"><br>
+    <a href="">Forget password</a> <br>
+    <br>
+    <input type="submit"><br>
+    <br>
+    <br>
+    <p>Don't have an account ?<a href="singup">Sing up</a></p>
+    <br>
+    {% for message in messages %}
+    <small>{{ message}} </small>
+    {% endfor %}
+
+</form>
+
+<p>Or Login With</p>
+<div class="social">
+    <a href=""><i class="fa-brands fa-facebook"></i></a>
+    <a href=""><i class="fa-brands fa-google"></i></a>
+</div>
+
+</div>
+{% endblock %}

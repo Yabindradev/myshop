@@ -1,0 +1,133 @@
+{% extends 'pages/dmain.html'%}
+{% block title%}
+admin edit Products pages
+{% endblock %}
+{% block body %}
+<style>
+    main {
+        margin-left: 17%;
+        padding: 16px;
+        background-color: rgb(205, 211, 211);
+        height: auto;
+    }
+    *{
+    font-family: Mono Font;
+}
+    .contant {
+        margin-top: 50px;
+    }
+     input[type=submit]{
+            width: 17%;
+            height: 40px;
+            border: none;
+            margin-left: 10px;
+            margin-right: 20px;
+            border-radius: 5px;
+            background-color: rgb(35, 29, 211);
+            color: white;
+         }
+     img{
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+                }
+    .lable{
+        float: right;
+    }
+    .lable a{
+        width: 20%;
+            height: 50px;
+            border: none;
+            margin-left: 10px;
+            margin-right: 20px;
+            border-radius: 5px;
+            background-color: rgb(35, 29, 211);
+            color: white;
+    }
+</style>
+<main>
+
+    <div class="contant">
+    <div class="box mb-6">
+        <div class="table">
+            <h3>Product info.</h3>
+            <table class="table is-fullwidth is-striped">
+                <thead>
+                    <th>Products</th>
+                    <th>id</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </thead>
+    
+                <tbody>
+                    <tr>
+                        <td> <img src="{{order_item.product.first_images.url}}"></td>
+                        <td>{{order_item.product.id}}</td>
+                        <td>{{order_item.product.price}}</td>
+                        <td>{{ order_item.quantity }}</td>
+    
+                    </tr>
+                </tbody>
+    
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td><strong>{{order_item.price}} </strong></td>
+                       
+                    </tr>
+                    
+                </tfoot>
+            </table>
+        </div>
+        <br>
+        <br>
+
+        <br>
+
+
+        <h2>Shipping info.</h2>
+        <div class="table">
+            <table class="table is-fullwidth is-striped">
+                <thead>
+                    <th>Order no</th>
+                    <th>Customer Name</th>
+                    <th>Customer Email</th>
+                    <th>Customer Phone</th>
+                    <th>Customer Address</th>
+                    <th>City</th>
+                    <th>Zipcode</th>
+
+                </thead>
+        
+                <tbody>
+                    <tr>
+                        <td>{{order_item.order_no}}</td>
+                        <td>{{order_item.first_name}} {{order_item.last_name}}</td>
+                        <td>{{order_item.email}}</td>
+                        <td>{{order_item.phone}}</td>
+                        <td>{{order_item.address}}</td>
+                        <td>{{order_item.place}}</td>
+                        <td>{{ order_item.zipcode }}</td>
+        
+                    </tr>
+                </tbody>
+        
+            </table>
+        </div>
+    </div>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Update">
+        </form>
+    <div class="lable">
+        <a href="{% url 'generate_shipping_lable'%}">Print Lable for shipping</a>
+    </div>
+
+        
+    </div>
+
+</main>
+{% endblock %}

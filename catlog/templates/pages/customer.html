@@ -1,0 +1,128 @@
+{% extends 'pages/dmain.html'%}
+{% block body %}
+<style>
+    main {
+        margin-left: 15%;
+        padding: 1px 16px;
+        background-color: rgb(208, 228, 195);
+
+        height: 100%;
+    }
+
+    .order_display_fild {
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    th {
+        background-color: rgb(131, 26, 110);
+        color: white;
+    }
+
+    menu {
+        margin-left: -15px;
+        margin-right: -15px;
+        margin-bottom: -15px;
+        width: 100%;
+        height: 50px;
+
+    }
+
+    input {
+        margin-left: 20%;
+        margin-top: 10px;
+        width: 30%;
+        height: 40px;
+        border: 1px solid rgb(60, 8, 193);
+        border-radius: 5px;
+    }
+
+    .admin {
+        float: right;
+        margin-right: 20px;
+    }
+
+    menu a {
+        margin-left: 20%;
+        color: red;
+        font-size: 25px;
+    }
+</style>
+<main>
+    <menu>
+
+
+
+
+        <input type="text" placeholder="Search Order">
+        <a href=""><i class="fa-sharp fa-solid fa-bell"></i></a>
+
+        <div class="admin">
+
+            <h3>Username</h3>
+        </div>
+
+    </menu>
+
+    <div class="order_disply">
+        <div class="order_display_fild">
+            <div class="lefttop">
+                <h1 class="btn btn-light">20 Order found</h1>
+            </div>
+            <div class="rigthtop">
+                <button id="datetime" type="button" class="btn btn-primary active" data-bs-toggle="button"
+                    aria-pressed="true"><i class="fa-solid fa-calendar-lines"></i>
+                </button>
+            </div>
+        </div>
+        <div class="order">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"><i class="fa-solid fa-id-badge"></i></th>
+                        <th scope="col">User Email</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">ZipCode</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col"><i class="fa-solid fa-money-bill"></i></th>
+                        <th scope="col"><i class="fa-solid fa-signal"></i></th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for orderitem in orderitem %}
+                    {% for order in order %}
+                    <tr>
+                        <td class="fw-bold">{{order.id}}</td>
+                        <td class="fw-bold">{{order.email}}</td>
+                        <td class="fw-bold">{{order.product.first_images}}{{orderitem.product}}</td>
+                        <td class="fw-bold">{{order.address}}</td>
+                        <td class="fw-bold">{{order.zipcode}}</td>
+                        <td class="fw-bold">{{order.created_at}}</td>
+                        <td class="fw-bold">{{orderitem.quantity}}</td>
+                        <td class="fw-bold">{{orderitem.price}}</td>
+                        <td class="fw-bold"><button type="button" class="btn btn-info"><a href="{% url 'order.id'}}"></a>{{order.staus}}</button></td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+            </tbody>
+    </table>
+   
+   </div>
+</div>
+<script>
+    var today = new Date();
+    var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+    var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+
+
+    document.getElementById(" datetime").innerHTML = date + '   ' + time </script>
+
+</main>
+{% endblock %}

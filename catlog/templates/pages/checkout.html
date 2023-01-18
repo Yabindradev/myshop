@@ -1,0 +1,81 @@
+{% extends 'pages/home.html'%}
+{% load static %}
+    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+
+
+    {% block body %}
+
+
+ 
+
+
+<style>
+    main{
+        margin-top: 100px;
+        margin-left: 17%;
+        margin-right: 10%;
+
+    }
+
+    form{
+        width: 80%;
+    }
+
+
+</style>
+
+    <main>
+                    <form action="{% url 'user_order' %}" method="POST">
+                       
+                        {% csrf_token %}
+                                <h3>Billing Address</h3>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail4">First Name</label>
+                                            <input name="first_name" id="first_name" type="text" class="form-control"  placeholder="First Name">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputPassword4">Last Name</label>
+                                            <input  name="last_name"  id="first_name" type="text" class="form-control" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail4">Email</label>
+                                            <input name="email"  id="first_name" type="email" class="form-control" placeholder="Email@gmail.com">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputPassword4">Phone Number</label>
+                                            <input  name="phone"  id="last_name" type="text" class="form-control"  placeholder="Phone Number">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputAddress">Address</label>
+                                        <input name="address"  id="address" type="text" class="form-control"  placeholder="1234 Main St">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputCity">City</label>
+                                            <input name="place"  id="zipcode" type="text" class="form-control" >
+                                        </div>
+                                
+                                    <div class="form-group col-md-2">
+                                            <label for="inputZip">Zip</label>
+                                            <input name="zipcode"  id="city" type="text" class="form-control" >
+                                        </div> 
+                                    </div>
+                                    
+                                    <button type="submit" id="submit-button"  class="btn btn-primary" >Pay with Khalti</button>
+
+                                </form>
+                                <script>
+                                    $('#submit-button').click(function () {
+                                            $(this).attr('disabled', true);
+                                        });
+                                </script>
+
+</main> 
+    {% endblock %}
+    

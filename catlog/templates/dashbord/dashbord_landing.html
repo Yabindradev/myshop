@@ -1,0 +1,176 @@
+{% extends 'pages/dmain.html'%}
+{% block title%}
+dashbord landiing pages
+{% endblock %}
+{% block body %}
+<style>
+
+main{
+    margin-left: 15%;
+    padding: 16px;
+    background-color: var(--background);
+    height: 1000px;
+}
+*{
+    font-family: Mono Font;
+}
+.contant{
+    margin-top: 40px;
+}
+.top{
+    margin-bottom: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    color: var(--text);
+
+}
+.left{
+    background-color: blueviolet;
+    width: 260px;
+    height: 110px;
+     margin: 10px;
+     text-align: center;
+
+}
+.top h2{
+    font-weight: bold;
+    margin-top: 20px;
+}
+.top p{
+    font-weight: bold;
+    font-size: 20px;
+}
+.center{
+    background-color: rgb(152, 67, 129);
+    width: 260px;
+    height: 110px;
+     margin: 10px;
+     text-align: center;
+
+}
+.center1{
+    background-color: rgb(65, 52, 138);
+    width: 260px;
+    height: 110px;
+     margin: 10px;
+     text-align: center;
+}
+.right{
+    background-color: rgb(181, 73, 34);
+    width: 260px;
+    height: 110px;
+     margin: 10px;
+     text-align: center;
+     
+}
+.main{
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    color:var(--text);
+}
+.chaart{
+    background-color: rgb(255, 255, 255);
+    width: 660px;
+    height: 460px;
+    margin-left: 12px;
+    margin: 10px;
+}
+.center2{
+    background-color: rgb(255, 255, 255);
+    height: 460px;
+    margin: 10px;
+    width: 200px;
+    color: black;
+
+}
+
+.topa a{
+    color: var(--text);
+    font-weight: bold;
+    font-size: 30px;
+}
+
+
+</style>
+
+<main>
+<div class="contant">
+    <div class="top">
+
+
+        <div class="left">
+           <h2>{{total_order}}</h2>
+           <p>Total Order</p>
+        </div>
+
+
+        <div class="center">
+            
+            <h2>{{total_user}}</h2>
+            <p>Total User</p>
+        </div>
+
+
+        <div class="center1">
+            <h2>1234223</h2>
+            <p>Total Income</p>
+        </div>
+
+
+        <div class="right">
+            <h2>{{total_products}}</h2>
+            <p>Total Products</p>
+        </div>
+
+
+    </div>
+
+
+    <div class="main">
+        <div class="chaart">
+        <canvas id="myChart" style="width:100%;max-width:1000px; height:80%"></canvas>
+        </div>
+        <div class="center2">
+            hech
+        </div>
+        <div class="center2">
+            hech
+        </div>
+    </div>
+</div>
+</main>
+    <script>
+
+        
+
+
+            var xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+
+            new Chart("myChart", {
+                type: "line",
+            data: {
+                labels: xValues,
+            datasets: [{
+                data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 100, 2478],
+            borderColor: "red",
+            fill: false
+                }, {
+                // data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+           // borderColor: "green",
+            //fill: false
+               // }, {
+              //  data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 10000],
+            //borderColor: "blue",
+           //fill: false 
+                }]
+            },
+            options: {
+                legend: {display: false }
+            }
+        });
+    </script>
+
+{% endblock %}

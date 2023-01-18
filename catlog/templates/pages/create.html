@@ -1,0 +1,67 @@
+{% extends 'pages/dmain.html'%}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+<div class="pages">
+    <h2>Create Products</h2>
+ 
+     {% block body %}
+     <style>
+         .pages {
+        margin-left: 20%;
+        padding: 1px 16px;
+
+    }
+        .myForm{
+        margin-left: 30%;
+        margin-bottom: 100px;
+    
+        }
+        h3{
+            margin-left: 20%;
+            margin-bottom: 100px;
+        }
+        button{
+            margin-left: 5%;
+            width: 120px;
+            background-color: blueviolet;
+            color: white;
+        }
+        </style>
+        <div class="title">
+            <h3>Create New Products</h3>
+        </div>
+        <div class="myForm">
+            <form action="" method="POST">
+            {% csrf_token %}
+                <div class="row">
+                    <div class='col-sm-6'>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{ pforms.title|as_crispy_field }}
+                                {{ pforms.product_code_number|as_crispy_field }}
+                                {{ pforms.first_images|as_crispy_field }}
+                                {{ pforms.third_images|as_crispy_field }}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{ pforms.category|as_crispy_field }}
+                                {{ pforms.user|as_crispy_field }}
+                                {{ pforms.second_images|as_crispy_field }}
+                                {{ pforms.forth_images|as_crispy_field }}
+    
+                            </div>
+    
+                        </div>
+                        <div class="form-group col-md-12">
+                            {{ pforms.description|as_crispy_field }}
+                            {{ pforms.price|as_crispy_field }}
+    
+                        </div>
+                        <input type="submit" class="btn btn-secondary btn-lg" value="POST">
+                    </div>
+                </div>
+                </form>
+            </div>
+           
+        </div>
+{% endblock %}

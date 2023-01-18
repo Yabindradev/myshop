@@ -1,0 +1,131 @@
+{% extends 'pages/home.html'%}
+{% load static %}
+{% block title %} help  {% endblock %}
+
+
+{% block body %}
+<style>
+    .hcontant{
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 300px;
+}
+
+.support{
+    margin-left: 200px;
+    margin-top: 50px;
+    margin-right: 200px;
+}
+.question{
+    margin-left: 200px;
+    margin-top: 50px;
+    margin-left: 40px;
+
+}
+.question ul li {
+    list-style-type: none;
+    margin-bottom: 15px;
+    
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 200px;
+    background-color: rgb(233, 241, 228);
+    width: 96%;
+    margin-left: 30px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+.left{
+    margin-top: 40px;
+    
+
+}
+.right{
+    margin-right: 50px;
+    margin-top: 40px;
+    justify-content: space-between;
+}
+.right input{
+    margin-top: -1px;
+    border: 1px solid black;
+    width: 180px;
+    border-radius: 10px;
+    height: 35px;
+}
+.right button{
+    border: none;
+    height: 35px;
+    width: 160px;
+    border-radius: 10px;
+    background-color: rgb(139, 29, 141);
+    color: white;
+}
+
+@media (max-width: 800px) {
+    .hcontant {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .support{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .support{
+        margin-left: 10px;
+    }
+    footer{
+        margin-left: 10px;
+        display: block;
+    }
+    .left{
+        margin-left: 15px;
+    }
+     .right{
+        margin-left: 15px;
+    }
+    input{
+        margin-bottom: 10px;
+    }
+
+}
+</style>
+<div class="hcontant">
+    <h1>Help Center</h1>
+    <p>Everything you need to know about products and billing..</p>
+</div>
+<div class="support">
+    <h3>FAQs</h3>
+    <p>Everything you need to know about products and billing.Can not find the answer you're loking for ?
+        Please <a href="">Chat with our friendy team.</a>
+    </p>
+</div>
+<div class="question">
+    <ul>
+        <li>Is there free trial .</li>
+        <li>Can i change my plan later.</li>
+        <li>What is a cnacellation policy.</li>
+        <li>How boes billing works.</li>
+        <li>How do i change my emali.</li>
+        <li>How can i delete my account.</li>
+
+    </ul>
+</div>
+    <!-- <div class="clearfix"></div> -->
+
+<footer>
+    <div class="left">
+    <h2>Join 2,000+ Subscribers</h2>
+    <p>Stay on the loop with everything you need to know..</p>
+    </div>
+    <div class="right">
+    <input type="email" placeholder=" youremail@gmail.com">
+    <button>Subscribers</button><br>
+    <p>We care about your data in our <a href="">Privacy Policy</a></p>
+
+    </div>
+</footer>
+
+
+{% endblock %}

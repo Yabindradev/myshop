@@ -1,0 +1,280 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet"  type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet"  type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet"  type="text/css">
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+
+    <title>{% block title %} main pages{% endblock %} </title>
+</head>
+
+<body>
+    <style>
+
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+
+    }
+ 
+
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    body {
+        background-color:white;
+    }
+
+    nav {
+        position: fixed;
+        overflow: hidden;
+        display: flex;
+        height: 80px;
+        width: 100%;
+        background: white;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px 0 100px;
+        flex-wrap: wrap;
+    }
+
+    nav .logo {
+        color: rgb(129, 104, 104);
+        font-size: 25px;
+        font-weight: 600;
+    }
+
+    nav ul {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+    }
+
+    nav ul li {
+        margin: 0 5px;
+    }
+
+    nav ul li a {
+        border: 1px solid rgb(29, 34, 184);
+        color: #af39ad;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        padding: 8px 15px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+    .dropbtn{
+        width: 20px;
+    }
+
+    nav .menu-btn i {
+        color: black;
+        font-size: 22px;
+        cursor: pointer;
+        display: none;
+    }
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    @media (max-width: 1100px) {
+        nav {
+            padding: 0 40px 0 50px;
+        }
+    }
+
+    @media (max-width: 920px) {
+        nav {
+            display: flex;
+            height: 50px;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px 0 100px;
+            flex-wrap: wrap;
+        }
+
+        nav .logo {
+            font-size: 30px;
+            display: none;
+        }
+
+        nav .menu-btn i {
+            display: block;
+            float: left;
+        }
+
+        #click:checked~.menu-btn i:before {
+            content: "\f00d";
+        }
+
+        nav ul {
+            position: fixed;
+            top: 50px;
+            left: -100%;
+            background: rgb(245, 247, 248);
+            height: 100vh;
+            width: 100%;
+            text-align: center;
+            display: block;
+            transition: all 0.10s ease;
+        }
+
+        nav ul li a {
+            color: #af39ad;
+        }
+
+        #click:checked~ul {
+            left: 0;
+        }
+
+        nav ul li {
+            width: 50%;
+            margin: 40px 0;
+            margin-left: 28%;
+        }
+
+        nav ul li a {
+            width: 100%;
+            margin-left: -100%;
+            display: block;
+            font-size: 20px;
+            transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        #click:checked~ul li a {
+            margin-left: 0px;
+        }
+
+        nav ul li a:hover {
+            background: none;
+            color: rgb(30, 72, 151);
+        }
+
+    }
+
+    @media (max-width: 920px) {
+        .second-menu {
+            display: block;
+            float: left;
+        }
+    }
+    @media (max-width: 500px){
+        .second-menu {
+            float: left;
+        }
+    }
+    @media (max-width: 120px){
+           nav {
+        display: flex;
+        height: 60px;
+        width: 100%;
+        background: white;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px 0 70px;
+        flex-wrap: wrap;
+    }
+    }
+            .search-bar {
+        margin-top: 3px;
+        float: right;
+        margin-right: 20px; 
+
+    }
+
+        .search-bar input {
+        all: unset;
+        font: 16px system-ui;
+        color: black;
+        height: 100%;
+        width: 100%;
+        padding: 6px 10px;
+    }
+
+        .search-bar form {
+        width: 100%;
+        height: 34px;
+        border: 1px solid rgb(29, 34, 184);;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        align-items: center; 
+        }
+        .user img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+ .badge {
+  position: absolute;
+  background-color: red;
+  color: white;
+  margin-top: -20px;
+  margin-right: -15px;
+}
+    </style>
+    <nav>
+        <div class="logo">Buy&Sell</div>
+        <div class="search-bar">
+            <form id="form">
+                <input type="search" id="" name="q" placeholder="Search...">
+            </form>
+        </div>
+
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="{% url 'order_details' %}">Account & list</a></li>
+            <li><a href="{% url 'cart_detail' %}"><i class="fa-regular fa-cart-shopping">{% if cart_item %}
+                        {{ cart_item|length }}{% endif %}</i></a></li>
+
+            {% else %}
+            <li><a href="{% url 'cart_detail' %}"><i class="fa-regular fa-cart-shopping">{% if cart_item %} {{ cart_item|length }}{% endif %}</i></a></li>
+            
+            
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'login' %}">Login</a>
+            </li>
+            <li><a href="{% url 'singup'%}">Sing up</a></li>
+            <li><a href=""><i class="fa-solid fa-language"></i></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="clearfix"></div>
+    {% block body %}
+    {% endblock %}
+    
+    {% block scripts %}
+    {% endblock %}
+
+
+
+    
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+{% extends 'pages/account.html'%}
+    {% block body %}
+    <style>
+            main {
+        margin-left: 11%;
+        margin-top: 7%;
+    }
+    .order{
+        margin-left: 4%;
+        margin-right: 4%;
+        margin-top: 100px;
+    }
+ 
+    .order_details{
+        width: 100%;
+        height: 280px;
+        border: solid 1px black;
+        border-radius: 10px;
+        margin-bottom: 50px;
+    }
+    .top{
+        height: 65px;
+        width: 100%;
+        border-bottom: solid 1px black;
+    
+    }
+    .top li{
+        float: left;
+        list-style: none;
+        padding: 15px;
+         font-weight: bold;
+        font-size: 15px;
+        text-transform: uppercase;
+    }
+    .top strong{
+        color: red;
+    }
+      .center{
+        height: 140px;
+        width: 100%;
+        border-bottom: solid 1px black;
+       
+    }
+    .center img{
+        height: 200px;
+        height: 100px;
+        margin-left: 10px;
+    }
+    .center li{
+        float: left;
+        list-style: none;
+    }
+    .center small{
+        font-size: 15px;
+    }
+
+    .butoon a{
+        margin-left: 10px;
+        margin-top: 5px;
+    }
+    
+ 
+    </style>
+    <main>
+        {% if order  %}
+        <div class="order">
+
+            {% for order in order %}
+
+            <div class="order_details">
+                <div class="top">
+                    <ul>
+                        <li>{{order.staus}} <br><strong> {{order.created_at}} </strong></li>
+                        <li> TOTAL <br> <strong>
+                            ¥ {{order.price}}</strong></li>
+                        <li>SHIP TO <br> <strong>{{user.username}}</strong></li>
+                        <!-- rigth -->
+                        
+                        <li style="float: right;"><a href="{% url 'generate_invoice' %}">Invoice</a></li>
+                        <li style="float: right;"><a href="{% url 'user_order_detials' %}">View Order Details</a></li>
+                    </ul>
+                </div>
+                <div class="center">
+                    <ul>
+                        <li><img src="{{order.product.first_images.url}}">
+                        <small><a href="">{{order.product.description|truncatechars:130}}</a></small></li>
+                    </ul>
+                    
+                </div>
+                <div class="butoon">
+                    {% if order.staus == "Shipped" %}
+                    <button onclick="myFunction" ><a href="{% url 'user_order_delete' order.id %}">Achive Order</a></button>
+                    {% else %}
+                    <a href="">Tracke Your order</a>
+                    {% endif %}
+                </div>
+            </div>
+
+
+
+                      
+                        {% endfor %}
+              
+        
+           
+            
+        </div>
+
+        {% else %}
+        <h2>You don't have any histry of hopping <a href="/">Shop now</a></h2>
+   
+        {% endif %}
+
+    </main>
+   
+        <script>
+                function myFunction() {
+                    alert("You want to cancle order.");
+}
+        </script>
+    {% endblock %}
+    
