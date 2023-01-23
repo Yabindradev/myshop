@@ -16,7 +16,6 @@ SECRET_KEY = 'django-insecure-fe^0h1g-bv0o&1r1oixcm#tpc+lft(kqq=a)lm$75gtsq)p=&5
 DEBUG = True
 
 
-
 ALLOWED_HOSTS = []
 SESSION_COOKIE_AGE = 86400
 CART_SESSION_ID = ('cart')
@@ -34,13 +33,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'catlog',
     'fontawesomefree',
     'crispy_forms',
-    
-]
 
+]
 
 
 MIDDLEWARE = [
@@ -56,7 +54,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'core.urls'
 
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -68,7 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                
+
             ],
         },
     },
@@ -90,10 +87,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bog',
+        'NAME': '',
         'USER': 'postgres',
-        'PASSWORD': 'yabindra12',
-        'HOST': '127.0.0.1', 
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
@@ -150,17 +147,13 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
 # #  Email configration
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAI_PORT = 1025
-EMAIL_HOST_USER = 'yabindra2057@gmail.com'
-EMAIL_HOST_PASSWORD = 'njujbafninoougmp'
+EMAI_PORT =
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = True
-
-
-
